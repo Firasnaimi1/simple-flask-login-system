@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Hello, {{ current_user.name }}!</h1> 
+    <div>
+        <a href="{{ url_for('logout.logout') }}">Logout</a>
+    </div>
+    <div>
+        <p style="color: green; background-color: white; padding: 10px;">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                     {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == "info"%}
+                            {{message}}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+        </p>
+    </div>
+</body>
+</html>
